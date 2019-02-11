@@ -1,0 +1,1 @@
+A project to learn all about fruits, veggies through ReactJS and Rails! 
