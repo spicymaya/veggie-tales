@@ -18,16 +18,17 @@ class GetFoods extends React.Component {
         const response = await fetch(url, {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
         })
-        debugger
+        //debugger
         // .then(response => response.json())
         // .then(data => this.setState({ data }));  
 
-        const data = response.json()
+        const data = await response.json()
         this.setState({data});
     }
    
     render() {
         const foodList = this.state.data;
+        // console.log(foodList);
         return (
             <SingleFood foodListFromParent = {foodList} className="food-list"></SingleFood>
         )
