@@ -28,7 +28,7 @@ class GetFoods extends React.Component {
    
     render() {
         const foodList = this.state.data;
-        // console.log(foodList);
+        //console.log(foodList);
         return (
             <SingleFood foodListFromParent = {foodList} className="food-list"></SingleFood>
         )
