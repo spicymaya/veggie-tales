@@ -1,0 +1,20 @@
+.cardStyle {
+    float: left;
+    display: block;
+    padding: 2rem;
+    margin: 1rem;
+    background: #C62168;
+    border-radius: 5px;
+}
+.cardStyle:nth-child(2n+1) {
+    /* clear: right; */
+}
+.cardStyle:nth-child(2n){
+    background: #F1EA7F;
+}
+.cardStyle:nth-child(3n){
+    background: #FF6F61;
+}
+.toolTip {
+    color: black;
+}
