@@ -1,0 +1,14 @@
+.cardStyle {
+  float: left;
+  display: block;
+  padding: 2rem;
+  margin: 1rem;
+  background-color: #c62168;
+  border-radius: 5px;
+}
+.cardStyle:nth-child(2n) {
+  background: #f1ea7f;
+}
+.cardStyle:nth-child(3n) {
+  background: #ff6f61;
+}

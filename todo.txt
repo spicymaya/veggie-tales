@@ -1,0 +1,11 @@
+switch to scss
+edit view
+single item view
+
+make countries table
+store country code in sqlight
+
+finish formating with prettier
+
+put fetch into lib
+
