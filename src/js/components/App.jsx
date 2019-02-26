@@ -50,7 +50,7 @@ class App extends React.Component {
             </Navbar>
             <Route exact path="/" component={Foods} />
             <Route path="/foods/" component={Foods} />
-            <Route path="/new" component={NewFoodForm} />
+            <Route path="/new" component={NewFood} />
           </div>
         </div>
       </HashRouter>

@@ -5,54 +5,44 @@ class NewFoodForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formControls: {
-        name: "",
-        type: "",
-        region: "",
-        rating: "1"
+      style: {
+        width: 350
       }
     };
+    this.openNav = this.openNav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
     // do not have to bind because of https://babeljs.io/docs/en/babel-plugin-proposal-class-properties
 
     // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.changeHandler = this.changeHandler.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
-  handleSubmit = async event => {
-    let url = "http://localhost:3000/foods";
-    // debugger;
-    const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json"
-      },
-      // body: this.state.formControls
-      body: JSON.stringify(this.state.formControls) // body data type must match "Content-Type" header
-    });
-    if (!response.ok) {
-      // console.log(response);
-    }
 
-    event.preventDefault();
-  };
+  // componentDidMount() {
+  //   document.addEventListener("click", this.closeNav);
+  // }
 
-  changeHandler = event => {
-    //experimental syntax
-    const name = event.target.name;
-    const value = event.target.value;
-    const prevfFormCnotrols = this.state.formControls;
-    this.setState({
-      formControls: {
-        ...prevfFormCnotrols,
-        [name]: value
-      }
-    });
-    // console.log(this.state.formControls);
-  };
+  // componentWillUnmount() {
+  //   document.removeEventListener("click", this.closeNav);
+  // }
 
+  // openNav() {
+  //   const style = { width: 350 };
+  //   this.setState({ style });
+  //   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  //   document.addEventListener("click", this.closeNav);
+  // }
+
+  // closeNav() {
+  //   document.removeEventListener("click", this.closeNav);
+  //   const style = { width: 0 };
+  //   this.setState({ style });
+  //   document.body.style.backgroundColor = "#F3F3F3";
+  // }
   render() {
+    // debugger;
     return (
       <div>
-        <Form id="food-form" onSubmit={this.handleSubmit}>
+        <Form id="food-form" onSubmit={this.props.handleSubmit}>
           <FormGroup>
             <Label for="foodName">Name</Label>
             <Input
@@ -60,8 +50,8 @@ class NewFoodForm extends React.Component {
               name="name"
               id="name"
               placeholder="Food Name"
-              value={this.state.formControls.name}
-              onChange={this.changeHandler}
+              value={this.props.formControls.name}
+              onChange={this.props.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -71,8 +61,8 @@ class NewFoodForm extends React.Component {
               name="region"
               id="region"
               placeholder="Food Region"
-              value={this.state.formControls.region}
-              onChange={this.changeHandler}
+              value={this.props.formControls.region}
+              onChange={this.props.handleChange}
             />
           </FormGroup>
 
@@ -82,8 +72,8 @@ class NewFoodForm extends React.Component {
               type="select"
               name="type"
               id="type"
-              value={this.state.formControls.type}
-              onChange={this.changeHandler}
+              value={this.props.formControls.type}
+              onChange={this.props.handleChange}
             >
               <option value="fruit">Fruit</option>
               <option value="vegetable">Vegetable</option>
@@ -99,7 +89,7 @@ class NewFoodForm extends React.Component {
                   type="radio"
                   name="rating"
                   value="1"
-                  onChange={this.changeHandler}
+                  onChange={this.props.handleChange}
                 />{" "}
                 1
               </Label>
@@ -110,7 +100,7 @@ class NewFoodForm extends React.Component {
                   type="radio"
                   name="rating"
                   value="2"
-                  onChange={this.changeHandler}
+                  onChange={this.props.handleChange}
                 />{" "}
                 2
               </Label>
@@ -121,7 +111,7 @@ class NewFoodForm extends React.Component {
                   type="radio"
                   name="rating"
                   value="3"
-                  onChange={this.changeHandler}
+                  onChange={this.props.handleChange}
                 />{" "}
                 3
               </Label>
