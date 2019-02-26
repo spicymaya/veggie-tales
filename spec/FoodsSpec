@@ -1,0 +1,51 @@
+import React from "react";
+import "@babel/polyfill";
+import jasmineEnzyme from "jasmine-enzyme";
+import { mount, shallow } from "enzyme";
+import { Router } from "react-router-dom";
+import Foods from "../src/js/components/Foods";
+
+describe("test", () => {
+  beforeEach(() => {
+    jasmineEnzyme();
+  });
+
+  // tests
+  it("should render without throwing an error", function() {
+    const wrapper = mount(
+      <Router>
+        <Foods />
+      </Router>
+    );
+    expect.renderer.create(wrapper.contains("Test")).toBe(true);
+  });
+  //   describe("FoodsComponent", function() {
+
+  //     const foodData = [
+  //       {
+  //         id: 1,
+  //         name: "Avocado",
+  //         region: "Peru",
+  //         type: "Vegetable",
+  //         rating: 8,
+  //         image_url: null,
+  //         created_at: null,
+  //         updated_at: null
+  //       },
+  //       {
+  //         id: 3,
+  //         name: "Orange",
+  //         region: "China",
+  //         type: "Fruit",
+  //         rating: 7,
+  //         image_url: null,
+  //         created_at: null,
+  //         updated_at: null
+  //       }
+  //     ];
+
+  //     it("should print out foodData", function() {
+  //       console.log(foodData);
+  //     });
+  //   });
+});
