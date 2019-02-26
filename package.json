@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development"
+    "start": "webpack-dev-server --open --mode development",
+    "prettier": "prettier --write './src/**/*.jsx'",
+    "test": "jasmine"
   },
   "keywords": [],
   "author": "",
@@ -14,16 +15,26 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
+    "babel-register": "^6.26.0",
     "css-loader": "^2.1.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "ignore-styles": "^5.0.1",
+    "jasmine": "^3.3.1",
+    "jasmine-enzyme": "^7.0.1",
+    "jsdom": "^13.2.0",
     "prettier": "1.16.4",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "regenerator-runtime": "^0.13.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "typescript": "^3.3.3",
@@ -32,7 +43,6 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
     "bootstrap": "^4.2.1",
     "react-country-flag": "^1.0.1",
     "react-router": "^4.3.1",

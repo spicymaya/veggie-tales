@@ -1,6 +1,6 @@
 import React from "react";
 import Foods from "./Foods.jsx";
-import NewFoodForm from "./NewFoodForm.jsx";
+import NewFood from "./NewFood.jsx";
 import { HashRouter, Route, Link } from "react-router-dom";
 import {
   Navbar,
@@ -10,7 +10,7 @@ import {
   NavbarToggler,
   Collapse
 } from "reactstrap";
-import SingleFood from "./SingleFood.jsx"
+import SingleFood from "./SingleFood.jsx";
 class App extends React.Component {
   constructor() {
     super();
