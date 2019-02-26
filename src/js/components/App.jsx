@@ -10,8 +10,7 @@ import {
   NavbarToggler,
   Collapse
 } from "reactstrap";
-import SingleFoodComponent from "../presentational/SingleFood.jsx";
-
+import SingleFood from "./SingleFood.jsx"
 class App extends React.Component {
   constructor() {
     super();
@@ -49,11 +48,9 @@ class App extends React.Component {
                 </Nav>
               </Collapse>
             </Navbar>
-            <div className="col-md-12">
-              <Route path="/" exact={true} component={Foods} />
-              <Route path="/foods" component={Foods} />
-              <Route path="/new" component={NewFoodForm} />
-            </div>
+            <Route exact path="/" component={Foods} />
+            <Route path="/foods/" component={Foods} />
+            <Route path="/new" component={NewFoodForm} />
           </div>
         </div>
       </HashRouter>

@@ -9,13 +9,15 @@ class NewFoodForm extends React.Component {
         name: "",
         type: "",
         region: "",
-        rating: ""
+        rating: "1"
       }
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
+    // do not have to bind because of https://babeljs.io/docs/en/babel-plugin-proposal-class-properties
+
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.changeHandler = this.changeHandler.bind(this);
   }
-  async handleSubmit(event) {
+  handleSubmit = async event => {
     let url = "http://localhost:3000/foods";
     // debugger;
     const response = await fetch(url, {
@@ -31,7 +33,7 @@ class NewFoodForm extends React.Component {
     }
 
     event.preventDefault();
-  }
+  };
 
   changeHandler = event => {
     //experimental syntax
