@@ -10,7 +10,6 @@ import {
   NavbarToggler,
   Collapse
 } from "reactstrap";
-import SingleFood from "./SingleFood.jsx";
 class App extends React.Component {
   constructor() {
     super();
