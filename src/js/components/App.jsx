@@ -1,5 +1,5 @@
 import React from "react";
-import Foods from "./Foods.jsx";
+import FoodWrapper from "./FoodWrapper.jsx";
 import NewFood from "./NewFood.jsx";
 import { HashRouter, Route, Link } from "react-router-dom";
 import {
@@ -8,8 +8,11 @@ import {
   NavLink,
   NavbarBrand,
   NavbarToggler,
-  Collapse
+  Collapse,
+  Container,
+  Row
 } from "reactstrap";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -28,29 +31,31 @@ class App extends React.Component {
     return (
       <HashRouter>
         <div className="App">
-          <div className="container">
-            <Navbar color="light" expand="lg">
-              <NavbarBrand href="/">Veggie Tales</NavbarBrand>
-              <NavbarToggler onClick={this.toggle} />
-              <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav navbar>
-                  <NavLink tag="div">
-                    <Link to="/foods" tag="a">
-                      Food list
-                    </Link>
-                  </NavLink>
-                  <NavLink tag="div">
-                    <Link to="/new" tag="a">
-                      Add new
-                    </Link>
-                  </NavLink>
-                </Nav>
-              </Collapse>
-            </Navbar>
-            <Route exact path="/" component={Foods} />
-            <Route path="/foods/" component={Foods} />
-            <Route path="/new" component={NewFood} />
-          </div>
+          <Navbar color="light" expand="lg">
+            <NavbarBrand href="/">Veggie Tales</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav navbar>
+                <NavLink tag="div">
+                  <Link to="/foods" tag="a">
+                    Food list
+                  </Link>
+                </NavLink>
+                <NavLink tag="div">
+                  <Link to="/new" tag="a">
+                    Add new
+                  </Link>
+                </NavLink>
+              </Nav>
+            </Collapse>
+          </Navbar>
+          <Container fluid>
+            <Row>
+              <Route exact path="/" component={FoodWrapper} />
+              <Route path="/foods/" component={FoodWrapper} />
+              <Route path="/new" component={NewFood} />
+            </Row>
+          </Container>
         </div>
       </HashRouter>
     );
