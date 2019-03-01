@@ -77,10 +77,6 @@ class NewFood extends React.Component {
 
     // console.log(this.state.formControls);
   };
-  handleDelete = () => {
-    this.state.method = "DELETE";
-  };
-
   render() {
     // console.log(this.props);
     return (
