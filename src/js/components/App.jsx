@@ -1,6 +1,6 @@
 import React from "react";
 import Foods from "./Foods.jsx";
-import NewFoodForm from "./NewFoodForm.jsx";
+import NewFood from "./NewFood.jsx";
 import { HashRouter, Route, Link } from "react-router-dom";
 import {
   Navbar,
@@ -10,7 +10,7 @@ import {
   NavbarToggler,
   Collapse
 } from "reactstrap";
-import SingleFood from "./SingleFood.jsx"
+import SingleFood from "./SingleFood.jsx";
 class App extends React.Component {
   constructor() {
     super();
@@ -50,7 +50,7 @@ class App extends React.Component {
             </Navbar>
             <Route exact path="/" component={Foods} />
             <Route path="/foods/" component={Foods} />
-            <Route path="/new" component={NewFoodForm} />
+            <Route path="/new" component={NewFood} />
           </div>
         </div>
       </HashRouter>

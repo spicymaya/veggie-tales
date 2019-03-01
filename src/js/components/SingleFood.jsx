@@ -1,19 +1,7 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Badge
-} from "reactstrap";
-import {getSingleFood} from '../../../lib/fetch.js'
+import { Media, Badge, Button } from "reactstrap";
+import { getSingleFood } from "../../../lib/fetch.js";
 import "./SingleFood.css";
-import ReactCountryFlag from "react-country-flag";
 
 class SingleFood extends React.Component {
   constructor(props) {
@@ -30,41 +18,32 @@ class SingleFood extends React.Component {
       tooltipOpen: !this.state.tooltipOpen
     });
   }
-  async componentDidMount() {
+  componentDidMount() {
     // console.log(this.props.match.params.id)
-    const response = await getSingleFood(this.props.match.params.id);
-    const data = await response.json();
-    this.setState({data})
+    // const data = await getSingleFood(this.props.match.params.id);
+    getSingleFood(this.props.match.params.id).then(data => {
+      console.log(data);
+      this.setState({ data });
+    });
+    // debugger;
+    // const data = await response.json();
   }
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col sm="4" key={this.state.data.id}>
-            <Card className="cardStyle">
-              <CardImg
-                top
-                width="100%"
-                src={this.state.data.image_url}
-                alt="Card image cap"
-              />
-              <CardBody>
-                <CardTitle>{this.state.data.name}</CardTitle>
-                <CardSubtitle>
-                  {" "}
-                  <Badge color="warning">{this.state.data.type}</Badge>
-                </CardSubtitle>
-                <CardText>
-                  {this.state.data.region}
-                  <ReactCountryFlag code="{this.state.data.region}" svg />
-                  {this.state.data.rating}
-                </CardText>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Media>
+        <Media left tag="div">
+          <Media src={this.state.data.image_url} alt={this.state.data.name} />
+        </Media>
+        <Media body>
+          <Media heading className="qa-name">
+            {this.state.data.name}
+          </Media>
+          <Badge color="warning">{this.state.data.type}</Badge>
+          {this.state.data.region}
+        </Media>
+        <Button success>Edit</Button>
+      </Media>
     );
   }
 }
