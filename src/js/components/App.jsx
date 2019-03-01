@@ -1,16 +1,14 @@
 import React from "react";
 import FoodWrapper from "./FoodWrapper.jsx";
 import NewFood from "./NewFood.jsx";
-import { HashRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {
   Navbar,
   Nav,
   NavLink,
   NavbarBrand,
   NavbarToggler,
-  Collapse,
-  Container,
-  Row
+  Collapse
 } from "reactstrap";
 
 class App extends React.Component {
@@ -29,9 +27,9 @@ class App extends React.Component {
   }
   render() {
     return (
-      <HashRouter>
+      <Router>
         <div className="App">
-          <Navbar color="light" expand="lg">
+          <Navbar color="light" expand="md">
             <NavbarBrand href="/">Veggie Tales</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
@@ -49,15 +47,12 @@ class App extends React.Component {
               </Nav>
             </Collapse>
           </Navbar>
-          <Container fluid>
-            <Row>
-              <Route exact path="/" component={FoodWrapper} />
-              <Route path="/foods/" component={FoodWrapper} />
-              <Route path="/new" component={NewFood} />
-            </Row>
-          </Container>
+
+          <Route exact path="/" component={FoodWrapper} />
+          <Route path="/foods/" component={FoodWrapper} />
+          <Route path="/new" component={NewFood} />
         </div>
-      </HashRouter>
+      </Router>
     );
   }
 }
