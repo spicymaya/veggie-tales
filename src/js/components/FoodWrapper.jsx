@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Container } from "reactstrap";
-import { getFoods } from "../../../lib/fetch.js";
+import { getFoods } from "../../../lib/api.js";
 import SingleFood from "./SingleFood.jsx";
 import FoodCard from "./FoodCard.jsx";
 

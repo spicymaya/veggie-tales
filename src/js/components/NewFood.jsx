@@ -1,6 +1,6 @@
 import React from "react";
-import { Container } from "reactstrap";
 import NewFoodForm from "./NewFoodForm.jsx";
+import { createFood, updateFood } from "../../../lib/api.js";
 
 class NewFood extends React.Component {
   constructor(props) {
@@ -37,29 +37,12 @@ class NewFood extends React.Component {
   handleSubmit = event => {
     // console.log(method);
     event.preventDefault();
-    let url;
-    if (this.state.method == "POST") {
-      url = "http://localhost:3000/foods";
-    } else if (this.state.method == "PUT" || "DELETE") {
-      url = "http://localhost:3000/foods/" + this.props.data.id;
+    // console.log(this.props.data);
+    if (typeof this.props.data == "undefined") {
+      createFood(this.state.formControls);
+    } else {
+      updateFood(this.state.formControls, this.props.data.id);
     }
-    // debugger;
-    fetch(url, {
-      method: this.state.method,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "same-origin",
-      redirect: "follow",
-      referrer: "no-referrer",
-      body: JSON.stringify(this.state.formControls) // body data type must match "Content-Type" header
-    }).then(response => {
-      if (response.ok) {
-        // window.open("http://localhost:8080/#/foods", "_self");
-      } else {
-        //console.log(response);
-      }
-    });
   };
   componentWillMount() {}
   handleChange = event => {

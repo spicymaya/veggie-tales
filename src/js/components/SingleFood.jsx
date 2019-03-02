@@ -2,7 +2,8 @@ import React from "react";
 import { Media, Button, Badge } from "reactstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import NewFood from "./NewFood.jsx";
-import { getSingleFood } from "../../../lib/fetch.js";
+import { getSingleFood } from "../../../lib/api.js";
+import { deleteFood } from "../../../lib/api.js";
 import "./SingleFood.scss";
 
 class SingleFood extends React.Component {
@@ -29,23 +30,7 @@ class SingleFood extends React.Component {
     }));
   }
   handleDelete = () => {
-    const url = "http://localhost:3000/foods/" + this.state.data.id;
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "same-origin",
-      redirect: "follow",
-      referrer: "no-referrer",
-      body: JSON.stringify(this.state.formControls) // body data type must match "Content-Type" header
-    }).then(response => {
-      if (response.ok) {
-        // window.open("http://localhost:8080/#/foods", "_self");
-      } else {
-        //console.log(response);
-      }
-    });
+    deleteFood(this.props.match.params.id);
   };
 
   render() {
