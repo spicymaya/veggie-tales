@@ -11,7 +11,6 @@ class SingleFood extends React.Component {
       tooltipOpen: false,
       data: []
     };
-    //  console.log("props", props);
   }
   toggle() {
     this.setState({
@@ -22,7 +21,7 @@ class SingleFood extends React.Component {
     // console.log(this.props.match.params.id)
     // const data = await getSingleFood(this.props.match.params.id);
     getSingleFood(this.props.match.params.id).then(data => {
-      console.log(data);
+      // console.log(data);
       this.setState({ data });
     });
     // debugger;

@@ -1,14 +1,16 @@
 .cardStyle {
   float: left;
   display: block;
+  width: 30%;
   padding: 2rem;
   margin: 1rem;
-  background-color: #c62168;
+  background: #c62168;
   border-radius: 5px;
 }
-.cardStyle:nth-child(2n) {
+.cardStyle:nth-child(3n + 1) {
+  clear: left;
   background: #f1ea7f;
 }
-.cardStyle:nth-child(3n) {
+.cardStyle:nth-child(2n + 2) {
   background: #ff6f61;
 }
