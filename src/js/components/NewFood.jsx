@@ -1,6 +1,6 @@
 import React from "react";
 import NewFoodForm from "./NewFoodForm.jsx";
-import { createFood, updateFood } from "../../../lib/api.js";
+import api from "../../../lib/api.js";
 
 class NewFood extends React.Component {
   constructor(props) {
@@ -39,9 +39,9 @@ class NewFood extends React.Component {
     event.preventDefault();
     // console.log(this.props.data);
     if (typeof this.props.data == "undefined") {
-      createFood(this.state.formControls);
+      api.createFood(this.state.formControls);
     } else {
-      updateFood(this.state.formControls, this.props.data.id);
+      api.updateFood(this.state.formControls, this.props.data.id);
     }
   };
   componentWillMount() {}
