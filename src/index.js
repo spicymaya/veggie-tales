@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./scss/app.scss";
+import "bootstrap";
 import App from "./js/components/App.jsx";
-
 //if I want RenderDOM to be conditional
 // const wrapper = document.getElementById("veggie-tales");
 // wrapper ? ReactDOM.render(<App />, wrapper) : false;

@@ -1,16 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
-  Col,
   Card,
   CardImg,
   CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
-  Badge
+  Badge,
+  Col
 } from "reactstrap";
-import styles from "./FoodCard.css";
+import styles from "./FoodCard.scss";
 // import ReactCountryFlag from "react-country-flag";
 
 class FoodCard extends React.Component {
@@ -20,31 +19,37 @@ class FoodCard extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Col sm="4">
         {this.props.data.map(food => {
           return (
-            <Card key={food.id} className={styles.cardStyle}>
-              <CardImg
-                top
-                width="100%"
-                src={food.image_url}
-                alt="Card image cap"
-              />
-              <CardBody>
-                <CardTitle className="qa-name">{food.name}</CardTitle>
-                <CardSubtitle>
-                  {" "}
-                  <Badge color="warning">{food.type}</Badge>
-                </CardSubtitle>
-                <CardText>
-                  {food.region}
-                  {food.rating}
-                </CardText>
-              </CardBody>
-            </Card>
+            <a
+              key={food.id}
+              className={`${styles.cardStyle}`}
+              href={`/foods/${food.id}`}
+            >
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src={food.image_url}
+                  alt="Card image cap"
+                />
+                <CardBody>
+                  <CardTitle className="qa-name">{food.name}</CardTitle>
+                  <CardSubtitle>
+                    {" "}
+                    <Badge color="warning">{food.type}</Badge>
+                  </CardSubtitle>
+                  <CardText>
+                    {food.region}
+                    {food.rating}
+                  </CardText>
+                </CardBody>
+              </Card>
+            </a>
           );
         })}
-      </div>
+      </Col>
     );
   }
 }
