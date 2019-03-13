@@ -7,49 +7,70 @@ import {
   CardTitle,
   CardSubtitle,
   Badge,
-  Col
+  Row
 } from "reactstrap";
+import Masonry from "react-masonry-component";
 import styles from "./FoodCard.scss";
 // import ReactCountryFlag from "react-country-flag";
 
 class FoodCard extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("props", this.props);
   }
   render() {
+    const masonryOptions = {
+      transitionDuration: 0
+    };
+
+    const imagesLoadedOptions = { background: ".cardStyle" };
+
     return (
-      <Col sm="4">
+      <Masonry
+        className={"my-gallery-class"} // default ''
+        elementType={"ul"} // default 'div'
+        options={masonryOptions} // default {}
+        disableImagesLoaded={false} // default false
+        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        imagesLoadedOptions={imagesLoadedOptions} // default {}
+        onImagesLoaded={this.handleImagesLoaded}
+      >
         {this.props.data.map(food => {
           return (
             <a
-              key={food.id}
               className={`${styles.cardStyle}`}
+              key={food.id}
               href={`/foods/${food.id}`}
             >
               <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src={food.image_url}
-                  alt="Card image cap"
-                />
+                {food.image_url ? (
+                  <CardImg
+                    top
+                    width="100%"
+                    src={food.image_url}
+                    alt="Card image cap"
+                  />
+                ) : (
+                  ""
+                )}
+
                 <CardBody>
                   <CardTitle className="qa-name">{food.name}</CardTitle>
                   <CardSubtitle>
                     {" "}
                     <Badge color="warning">{food.type}</Badge>
                   </CardSubtitle>
-                  <CardText>
-                    {food.region}
-                    {food.rating}
+                  <CardText tag="div">
+                    <p className={styles.region}>{food.region}</p>
+                    <div>
+                      <Badge color="success">{food.rating}</Badge>
+                    </div>
                   </CardText>
                 </CardBody>
               </Card>
             </a>
           );
         })}
-      </Col>
+      </Masonry>
     );
   }
 }
