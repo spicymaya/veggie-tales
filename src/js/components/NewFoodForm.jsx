@@ -1,5 +1,13 @@
 import React from "react";
-import { Form, Button, FormGroup, Label, Input } from "reactstrap";
+import {
+  Container,
+  Alert,
+  Form,
+  Button,
+  FormGroup,
+  Label,
+  Input
+} from "reactstrap";
 
 class NewFoodForm extends React.Component {
   constructor(props) {
@@ -11,96 +19,90 @@ class NewFoodForm extends React.Component {
   }
   render() {
     // debugger;
-
+    const hasError = this.props.error;
     return (
-      <Form id="food-form" onSubmit={this.props.handleSubmit}>
-        <FormGroup>
-          <Label for="foodName">Name</Label>
-          <Input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Food Name"
-            value={this.props.formControls.name}
-            onChange={this.props.handleChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="region">Region</Label>
-          <Input
-            type="text"
-            name="region"
-            id="region"
-            placeholder="Food Region"
-            value={this.props.formControls.region}
-            onChange={this.props.handleChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="image_url">Image Url</Label>
-          <Input
-            type="text"
-            name="image_url"
-            id="image_url"
-            placeholder="Image Url"
-            value={this.props.formControls.image_url}
-            onChange={this.props.handleChange}
-          />
-        </FormGroup>
+      <Container>
+        {hasError && (
+          <Alert color="danger">
+            <div>{this.props.error}</div>
+          </Alert>
+        )}
 
-        <FormGroup>
-          <Label for="type">Select</Label>
-          <Input
-            type="select"
-            name="type"
-            id="type"
-            value={this.props.formControls.type}
-            onChange={this.props.handleChange}
-          >
-            <option value="fruit">Fruit</option>
-            <option value="vegetable">Vegetable</option>
-          </Input>
-        </FormGroup>
+        <Form id="food-form" onSubmit={this.props.handleSubmit}>
+          <FormGroup>
+            <Label for="foodName">Name</Label>
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Food Name"
+              value={this.props.formControls.name}
+              onChange={this.props.handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="region">Region</Label>
+            <Input
+              type="text"
+              name="region"
+              id="region"
+              placeholder="Food Region"
+              value={this.props.formControls.region}
+              onChange={this.props.handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="image_url">Image Url</Label>
+            <Input
+              type="text"
+              name="image_url"
+              id="image_url"
+              placeholder="Image Url"
+              value={this.props.formControls.image_url}
+              onChange={this.props.handleChange}
+            />
+          </FormGroup>
 
-        <FormGroup tag="fieldset">
-          <legend>Food Rating</legend>
+          <FormGroup>
+            <Label for="type">Select</Label>
+            <Input
+              type="select"
+              name="type"
+              id="type"
+              value={this.props.formControls.type}
+              onChange={this.props.handleChange}
+            >
+              <option>Select Type</option>
+              <option value="fruit">Fruit</option>
+              <option value="vegetable">Vegetable</option>
+            </Input>
+          </FormGroup>
 
-          <FormGroup check>
-            <Label check>
-              <Input
-                type="radio"
-                name="rating"
-                value="1"
-                onChange={this.props.handleChange}
-              />{" "}
-              1
-            </Label>
+          <FormGroup>
+            <Label for="type">Select</Label>
+            <Input
+              type="select"
+              name="rating"
+              id="rating"
+              value={this.props.formControls.rating}
+              onChange={this.props.handleChange}
+            >
+              <option value="1">Select your rating</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </Input>
           </FormGroup>
-          <FormGroup check>
-            <Label check>
-              <Input
-                type="radio"
-                name="rating"
-                value="2"
-                onChange={this.props.handleChange}
-              />{" "}
-              2
-            </Label>
-          </FormGroup>
-          <FormGroup check>
-            <Label check>
-              <Input
-                type="radio"
-                name="rating"
-                value="3"
-                onChange={this.props.handleChange}
-              />{" "}
-              3
-            </Label>
-          </FormGroup>
-        </FormGroup>
-        <Button color="primary">Submit</Button>
-      </Form>
+          <Button color="primary">Submit</Button>
+        </Form>
+      </Container>
     );
   }
 }
