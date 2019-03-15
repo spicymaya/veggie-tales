@@ -1,6 +1,6 @@
 import React from "react";
 import { Media, Badge } from "reactstrap";
-import "./SingleFoodWrapper.scss";
+import styles from "./SingleFood.scss";
 
 class SingleFood extends React.Component {
   constructor(props) {
@@ -10,8 +10,8 @@ class SingleFood extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <Media>
-        <Media left tag="div">
+      <Media className={styles.sf}>
+        <Media className={styles.sfImg} left tag="div">
           <Media
             tag="img"
             object
@@ -19,12 +19,18 @@ class SingleFood extends React.Component {
             alt={this.props.data.name}
           />
         </Media>
-        <Media body>
+        <Media className={styles.sfText} body>
           <Media heading className="qa-name">
             {this.props.data.name}
           </Media>
-          <Badge color="warning">{this.props.data.type}</Badge>
-          {this.props.data.region}
+
+          <p>{this.props.data.region}</p>
+          <Badge className={styles.sfBadge} color="warning">
+            {this.props.data.type}
+          </Badge>
+          <Badge className={styles.sfBadge} color="success">
+            {this.props.data.rating}
+          </Badge>
         </Media>
       </Media>
     );

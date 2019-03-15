@@ -1,6 +1,14 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { Container } from "reactstrap";
+import {
+  Container,
+  Card,
+  CardImg,
+  CardBody,
+  CardText,
+  CardTitle,
+  CardSubtitle
+} from "reactstrap";
 import api from "../../../lib/api.js";
 import SingleFoodWrapper from "./SingleFoodWrapper.jsx";
 import FoodCard from "./FoodCard.jsx";
@@ -28,6 +36,30 @@ class FoodWrapper extends React.Component {
           exact
           path={`/foods/`}
           component={() => <FoodCard data={this.state.data} />}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div>
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src="https://66.media.tumblr.com/tumblr_lufh7n4Hp61qhujw5o1_400.gif"
+                  alt="Card image cap"
+                />
+                <CardBody>
+                  <CardTitle>Welome to Veggie Tales!</CardTitle>
+                  <CardSubtitle>The land of fruits and veggies. </CardSubtitle>
+                  <CardText>
+                    Basically, paradise if you add fish 🐟, coffee ☕️, wine 🍷
+                    and chocolate 🍫
+                  </CardText>
+                </CardBody>
+              </Card>
+            </div>
+          )}
         />
       </Container>
     );

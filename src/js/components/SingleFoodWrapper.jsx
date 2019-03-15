@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import NewFood from "./NewFood.jsx";
 import SingleFood from "./SingleFood.jsx";
 import api from "../../../lib/api.js";
-import "./SingleFoodWrapper.scss";
+import styles from "./SingleFoodWrapper.scss";
 
 class SingleFoodWrapper extends React.Component {
   constructor(props) {
@@ -24,20 +24,21 @@ class SingleFoodWrapper extends React.Component {
       });
     });
   }
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
-  }
+  };
   handleDelete = () => {
     api.deleteFood(this.props.match.params.id);
+    window.location.assign("/foods");
   };
 
   render() {
     // console.log(this.state);
     return (
       <Router>
-        <div>
+        <div className={styles.sfWrapper}>
           <Route
             path={`/foods/${this.props.match.params.id}/edit`}
             component={() => <NewFood data={this.state.data} />}
@@ -47,13 +48,46 @@ class SingleFoodWrapper extends React.Component {
             path={`/foods/${this.props.match.params.id}`}
             render={() => (
               <div>
-                <Button onClick={this.handleDelete} color="danger">
-                  Delete
-                </Button>
-                <Link to={`/foods/${this.props.match.params.id}/edit`}>
-                  <Button>Edit</Button>
-                </Link>
+                <div className={styles.actionBtns}>
+                  <Button
+                    className={styles.actionBtn}
+                    onClick={this.toggle}
+                    color="danger"
+                    size="sm"
+                  >
+                    Delete
+                  </Button>
+                  <Link to={`/foods/${this.props.match.params.id}/edit`}>
+                    <Button size="sm" className={styles.actionBtn}>
+                      Edit
+                    </Button>
+                  </Link>
+                </div>
                 <SingleFood data={this.state.data} />
+                {/* Modal for delete confirmation */}
+                <Modal
+                  isOpen={this.state.modal}
+                  toggle={this.toggle}
+                  className={this.props.className}
+                >
+                  <ModalHeader toggle={this.toggle}>
+                    Are you sure you'd like to delete this item?{" "}
+                  </ModalHeader>
+                  <ModalBody>
+                    <img
+                      className={styles.modalImg}
+                      src="https://media3.giphy.com/media/XBu2hy3y2X9Bu/giphy.gif"
+                    />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="primary" onClick={this.handleDelete}>
+                      Yes
+                    </Button>{" "}
+                    <Button color="secondary" onClick={this.toggle}>
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </Modal>
               </div>
             )}
           />
