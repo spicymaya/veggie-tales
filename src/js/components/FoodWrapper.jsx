@@ -1,8 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Container } from "reactstrap";
-import { getFoods } from "../../../lib/fetch.js";
-import SingleFood from "./SingleFood.jsx";
+import api from "../../../lib/api.js";
+import SingleFoodWrapper from "./SingleFoodWrapper.jsx";
 import FoodCard from "./FoodCard.jsx";
 
 class FoodWrapper extends React.Component {
@@ -14,7 +14,7 @@ class FoodWrapper extends React.Component {
   }
 
   componentDidMount() {
-    getFoods().then(data => {
+    api.getFoods().then(data => {
       this.setState({ data });
     });
   }
@@ -23,7 +23,7 @@ class FoodWrapper extends React.Component {
     return (
       <Container>
         {/* <Route path={`/foods/:id`} render={(props) => <SingleFood{...props}/>} /> */}
-        <Route path={`/foods/:id`} component={SingleFood} />
+        <Route path={`/foods/:id`} component={SingleFoodWrapper} />
         <Route
           exact
           path={`/foods/`}

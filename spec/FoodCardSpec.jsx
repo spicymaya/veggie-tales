@@ -1,7 +1,6 @@
 import React from "react";
 import "@babel/polyfill";
 import { mount } from "enzyme";
-import * as fetch from "../lib/fetch.js";
 import FoodCard from "../src/js/components/FoodCard";
 
 describe("FoodsComponent", () => {
