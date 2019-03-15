@@ -45,6 +45,7 @@ describe("Api.js", () => {
         headers: {
           "Content-Type": "application/json"
         },
+        redirect: "follow",
         credentials: "same-origin",
         body: JSON.stringify(data)
       });

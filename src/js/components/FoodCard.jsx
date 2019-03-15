@@ -17,9 +17,17 @@ class FoodCard extends React.Component {
   constructor(props) {
     super(props);
   }
+  handleImagesLoaded = () => {
+    // console.log("loaded");
+  };
   render() {
     const masonryOptions = {
-      transitionDuration: 0
+      transitionDuration: "0.2s",
+      itemSelector: ".cardMasonry",
+      columnWidth: ".cardMasonry",
+      // do not use .grid-sizer in layout
+
+      percentPosition: true
     };
 
     const imagesLoadedOptions = { background: ".cardStyle" };
@@ -27,17 +35,16 @@ class FoodCard extends React.Component {
     return (
       <Masonry
         className={"my-gallery-class"} // default ''
-        elementType={"ul"} // default 'div'
         options={masonryOptions} // default {}
         disableImagesLoaded={false} // default false
-        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
         imagesLoadedOptions={imagesLoadedOptions} // default {}
         onImagesLoaded={this.handleImagesLoaded}
       >
         {this.props.data.map(food => {
           return (
             <a
-              className={`${styles.cardStyle}`}
+              className={`${styles.cardStyle} cardMasonry`}
               key={food.id}
               href={`/foods/${food.id}`}
             >
