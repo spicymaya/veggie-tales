@@ -30,24 +30,10 @@ class NewFood extends React.Component {
         error: props.data.error
       };
     }
-
-    // do not have to bind because of https://babeljs.io/docs/en/babel-plugin-proposal-class-properties
-
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.changeHandler = this.changeHandler.bind(this);
   }
 
   handleSubmit = async event => {
-    // console.log(method);
     event.preventDefault();
-    // console.log(this.props.data);
-    // let data;
-    // if (typeof this.props.data == "undefined") {
-    //   data = await api.createFood(this.state.formControls);
-    // } else {
-    //   data = await api.updateFood(this.state.formControls, this.props.data.id);
-    // }
-    // let error
     try {
       if (typeof this.props.data == "undefined") {
         const data = await api.createFood(this.state.formControls);
@@ -59,19 +45,11 @@ class NewFood extends React.Component {
         );
         window.location.assign("/foods/" + this.props.data.id);
       }
-
-      // console.log("data", data);
-      // debugger;
-      // do the redirect using data
     } catch (error) {
-      // debugger;
-      // set state using error
       this.setState({
         error: error
       });
     }
-
-    // console.log(this.state);
   };
   handleChange = event => {
     //experimental syntax
