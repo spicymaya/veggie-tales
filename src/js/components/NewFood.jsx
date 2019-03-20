@@ -11,9 +11,9 @@ class NewFood extends React.Component {
           name: "",
           type: "",
           region: "",
-          image_url: "",
-          rating: "1"
+          image_url: ""
         },
+        rating: 1,
         method: "POST",
         error: ""
       };
@@ -23,9 +23,9 @@ class NewFood extends React.Component {
           name: props.data.name,
           type: props.data.type,
           region: props.data.region,
-          image_url: props.data.image_url,
-          rating: props.data.rating
+          image_url: props.data.image_url
         },
+        rating: props.data.rating,
         method: "PUT",
         error: props.data.error
       };
@@ -36,6 +36,7 @@ class NewFood extends React.Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.changeHandler = this.changeHandler.bind(this);
   }
+
   handleSubmit = async event => {
     // console.log(method);
     event.preventDefault();
@@ -87,15 +88,23 @@ class NewFood extends React.Component {
 
     // console.log(this.state.formControls);
   };
+  starUpdate = starNumber => {
+    // console.log("starNumber", starNumber);
+    this.setState({
+      rating: starNumber
+    });
+  };
   render() {
     // console.log(this.props);
     return (
       <NewFoodForm
         formControls={this.state.formControls}
+        rating={this.state.rating}
         method={this.state.method}
         error={this.state.error}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
+        starUpdate={this.starUpdate}
       />
     );
   }
