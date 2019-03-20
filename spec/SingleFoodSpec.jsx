@@ -11,7 +11,9 @@ describe("SingleFood", () => {
       type: "Vegetable",
       rating: 8
     };
-    const wrapper = mount(<SingleFood data={singleFoodData} />);
+    const wrapper = mount(
+      <SingleFood data={singleFoodData} onStarClick={this.starUpdate} />
+    );
     expect(
       wrapper
         .find(".qa-name")

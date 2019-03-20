@@ -1,5 +1,6 @@
 import React from "react";
 import { Media, Badge } from "reactstrap";
+import OhMyStars from "./OhMyStars.jsx";
 import styles from "./SingleFood.scss";
 
 class SingleFood extends React.Component {
@@ -8,7 +9,6 @@ class SingleFood extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <Media className={styles.sf}>
         <Media className={styles.sfImg} left tag="div">
@@ -28,9 +28,11 @@ class SingleFood extends React.Component {
           <Badge className={styles.sfBadge} color="warning">
             {this.props.data.type}
           </Badge>
-          <Badge className={styles.sfBadge} color="success">
-            {this.props.data.rating}
-          </Badge>
+          <OhMyStars
+            number={this.props.data.rating}
+            onStarClick={this.starUpdate}
+            isEditable={false}
+          />
         </Media>
       </Media>
     );
