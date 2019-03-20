@@ -8,7 +8,7 @@ import {
   Label,
   Input
 } from "reactstrap";
-
+import OhMyStars from "./OhMyStars.jsx";
 class NewFoodForm extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,7 @@ class NewFoodForm extends React.Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleChange = this.handleChange.bind(this);
   }
+
   render() {
     // debugger;
     const hasError = this.props.error;
@@ -32,6 +33,8 @@ class NewFoodForm extends React.Component {
           <FormGroup>
             <Label for="foodName">Name</Label>
             <Input
+              className="qa-name
+              2"
               type="text"
               name="name"
               id="name"
@@ -43,6 +46,7 @@ class NewFoodForm extends React.Component {
           <FormGroup>
             <Label for="region">Region</Label>
             <Input
+              className="qa-region"
               type="text"
               name="region"
               id="region"
@@ -66,6 +70,7 @@ class NewFoodForm extends React.Component {
           <FormGroup>
             <Label for="type">Select</Label>
             <Input
+              className="qa-type"
               type="select"
               name="type"
               id="type"
@@ -77,29 +82,11 @@ class NewFoodForm extends React.Component {
               <option value="vegetable">Vegetable</option>
             </Input>
           </FormGroup>
-
-          <FormGroup>
-            <Label for="type">Select</Label>
-            <Input
-              type="select"
-              name="rating"
-              id="rating"
-              value={this.props.formControls.rating}
-              onChange={this.props.handleChange}
-            >
-              <option value="1">Select your rating</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </Input>
-          </FormGroup>
+          <OhMyStars
+            number={this.props.rating}
+            onStarClick={this.props.starUpdate}
+            isEditable={true}
+          />
           <Button color="primary">Submit</Button>
         </Form>
       </Container>
