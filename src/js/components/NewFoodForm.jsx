@@ -82,11 +82,13 @@ class NewFoodForm extends React.Component {
               <option value="vegetable">Vegetable</option>
             </Input>
           </FormGroup>
+
           <OhMyStars
-            number={this.props.rating}
+            number={this.props.formControls.rating}
             onStarClick={this.props.starUpdate}
             isEditable={true}
           />
+
           <Button color="primary">Submit</Button>
         </Form>
       </Container>

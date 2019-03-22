@@ -11,9 +11,10 @@ class NewFood extends React.Component {
           name: "",
           type: "",
           region: "",
-          image_url: ""
+          image_url: "",
+          rating: 1
         },
-        rating: 1,
+
         method: "POST",
         error: ""
       };
@@ -23,9 +24,10 @@ class NewFood extends React.Component {
           name: props.data.name,
           type: props.data.type,
           region: props.data.region,
-          image_url: props.data.image_url
+          image_url: props.data.image_url,
+          rating: props.data.rating
         },
-        rating: props.data.rating,
+
         method: "PUT",
         error: props.data.error
       };
@@ -36,11 +38,15 @@ class NewFood extends React.Component {
     event.preventDefault();
     try {
       if (typeof this.props.data == "undefined") {
-        const data = await api.createFood(this.state.formControls);
+        const data = await api.createFood(
+          this.state.formControls
+          // this.state.rating
+        );
         window.location.assign("/foods/" + data.id);
       } else {
         const data = await api.updateFood(
           this.state.formControls,
+          // this.state.rating,
           this.props.data.id
         );
         window.location.assign("/foods/" + this.props.data.id);
@@ -55,29 +61,28 @@ class NewFood extends React.Component {
     //experimental syntax
     const name = event.target.name;
     const value = event.target.value;
-    const prevfFormCnotrols = this.state.formControls;
+    const prevfFormControls = this.state.formControls;
 
     this.setState({
       formControls: {
-        ...prevfFormCnotrols,
+        ...prevfFormControls,
         [name]: value
       }
     });
-
-    // console.log(this.state.formControls);
   };
   starUpdate = starNumber => {
-    // console.log("starNumber", starNumber);
+    const prevfFormControls = this.state.formControls;
     this.setState({
-      rating: starNumber
+      formControls: {
+        ...prevfFormControls,
+        rating: starNumber
+      }
     });
   };
   render() {
-    // console.log(this.props);
     return (
       <NewFoodForm
         formControls={this.state.formControls}
-        rating={this.state.rating}
         method={this.state.method}
         error={this.state.error}
         handleSubmit={this.handleSubmit}

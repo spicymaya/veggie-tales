@@ -6,8 +6,7 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Badge,
-  Row
+  Badge
 } from "reactstrap";
 import Masonry from "react-masonry-component";
 import styles from "./FoodCard.scss";
