@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 module.exports = {
   entry: ["@babel/polyfill", "./src/index.js"],
   output: {
@@ -48,6 +49,12 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
+    }),
+    new webpack.DefinePlugin({
+      API_URL:
+        process.env.NODE_ENV === "production"
+          ? "https://shrouded-meadow-36658.herokuapp.com"
+          : "http://localhost:3000"
     })
   ]
 };
