@@ -1,9 +1,11 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-module.exports = {
-  entry: ["@babel/polyfill", "./src/index.js"],
-  output: {
-    publicPath: "/"
+const path = require("path");
+// const nodeExternals = require("webpack-node-externals");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+const config = {
+  node: {
+    __dirname: false
   },
   module: {
     rules: [
@@ -39,6 +41,10 @@ module.exports = {
             loader: "sass-loader" // compiles Sass to CSS
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
@@ -56,5 +62,22 @@ module.exports = {
           ? "https://shrouded-meadow-36658.herokuapp.com"
           : "http://localhost:3000"
     })
-  ]
+  ],
+  // set to development to read .env.local variables
+  mode: "development"
 };
+
+const serverConfig = Object.assign({}, config, {
+  // target: "node",
+  // externals: [
+  //   nodeExternals({
+  //     whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i]
+  //   })
+  // ],
+  entry: ["@babel/polyfill", __dirname + "/src/index.js"],
+  output: {
+    path: path.resolve("./build"),
+    filename: "scripts.js"
+  }
+});
+module.exports = [serverConfig];
