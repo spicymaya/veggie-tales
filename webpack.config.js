@@ -59,8 +59,8 @@ const config = {
     new webpack.DefinePlugin({
       API_URL:
         process.env.NODE_ENV === "production"
-          ? "https://shrouded-meadow-36658.herokuapp.com"
-          : "http://localhost:3000"
+          ? JSON.stringify("https://shrouded-meadow-36658.herokuapp.com")
+          : JSON.stringify("http://localhost:3000") // necessary so that webpack injects the value including the "" quotes, as a string.
     })
   ],
   // set to development to read .env.local variables
@@ -68,12 +68,6 @@ const config = {
 };
 
 const serverConfig = Object.assign({}, config, {
-  // target: "node",
-  // externals: [
-  //   nodeExternals({
-  //     whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i]
-  //   })
-  // ],
   entry: ["@babel/polyfill", __dirname + "/src/index.js"],
   output: {
     path: path.resolve("./build"),
