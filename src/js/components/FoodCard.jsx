@@ -8,6 +8,7 @@ import {
   CardSubtitle,
   Badge
 } from "reactstrap";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Masonry from "react-masonry-component";
 import styles from "./FoodCard.scss";
 // import ReactCountryFlag from "react-country-flag";
@@ -42,10 +43,10 @@ class FoodCard extends React.Component {
       >
         {this.props.data.map(food => {
           return (
-            <a
+            <Link
               className={`${styles.cardStyle} cardMasonry`}
               key={food.id}
-              href={`/foods/${food.id}`}
+              to={`/foods/${food.id}`}
             >
               <Card>
                 {food.image_url ? (
@@ -73,7 +74,7 @@ class FoodCard extends React.Component {
                   </CardText>
                 </CardBody>
               </Card>
-            </a>
+            </Link>
           );
         })}
       </Masonry>
