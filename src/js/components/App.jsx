@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FoodWrapper from "./FoodWrapper.jsx";
 import NewFood from "./NewFood.jsx";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import {
   Navbar,
   Nav,
