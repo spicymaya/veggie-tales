@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import NewFoodForm from "./NewFoodForm.jsx";
 import api from "../../../lib/api.js";
 
@@ -27,11 +28,11 @@ class NewFood extends React.Component {
           image_url: props.data.image_url,
           rating: props.data.rating
         },
-
         method: "PUT",
         error: props.data.error
       };
     }
+    console.log(this.state);
   }
 
   handleSubmit = async event => {
@@ -42,14 +43,19 @@ class NewFood extends React.Component {
           this.state.formControls
           // this.state.rating
         );
-        window.location.assign("/foods/" + data.id);
+        console.log(this.state);
+        // window.location.assign("/foods/" + data.id);
+        // this.props.history.push(`/foods/${this.state.data.id}`);
+        this.props.history.push("/foods/");
       } else {
         const data = await api.updateFood(
           this.state.formControls,
           // this.state.rating,
           this.props.data.id
         );
-        window.location.assign("/foods/" + this.props.data.id);
+        // window.location.assign("/foods/" + this.props.data.id);
+        console.log(this.props.data);
+        this.props.history.push(`/foods/${this.props.data.id}`);
       }
     } catch (error) {
       this.setState({
@@ -93,4 +99,4 @@ class NewFood extends React.Component {
   }
 }
 
-export default NewFood;
+export default withRouter(NewFood);
