@@ -4,3 +4,4 @@ tmp
 #misc
 .DS_Store
 todo.txt
+/build/bundle_sizer.html
