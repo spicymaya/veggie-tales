@@ -8,7 +8,7 @@ import {
   CardSubtitle,
   Badge
 } from "reactstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Masonry from "react-masonry-component";
 import styles from "./FoodCard.scss";
 // import ReactCountryFlag from "react-country-flag";
