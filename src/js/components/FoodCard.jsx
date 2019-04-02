@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Masonry from "react-masonry-component";
+import OhMyStars from "./OhMyStars.jsx";
 import styles from "./FoodCard.scss";
 // import ReactCountryFlag from "react-country-flag";
 
@@ -68,8 +69,8 @@ class FoodCard extends React.Component {
                   </CardSubtitle>
                   <CardText tag="div">
                     <p className={styles.region}>{food.region}</p>
-                    <div>
-                      <Badge color="success">{food.rating}</Badge>
+                    <div className={styles.stars}>
+                      <OhMyStars number={food.rating} isEditable={false} />
                     </div>
                   </CardText>
                 </CardBody>
