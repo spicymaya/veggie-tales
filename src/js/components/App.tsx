@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { any } from "prop-types";
 import { hot } from "react-hot-loader/root";
 import FoodWrapper from "./FoodWrapper.jsx";
 import NewFood from "./NewFood.jsx";

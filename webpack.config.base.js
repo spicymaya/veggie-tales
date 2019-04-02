@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 module.exports = {
-  entry: ["@babel/polyfill", path.join(__dirname, "./src/index.js")],
+  entry: path.join(__dirname, "./src/index.js"),
   output: {
     path: path.join(__dirname, "./build"),
     filename: "bundle.js"
@@ -10,14 +10,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|tsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: "last 2 versions, not dead, not <2%, not ie 11",
+
+                useBuiltIns: "entry"
+              }
+            ],
+            "@babel/preset-react",
+            "@babel/typescript"
+          ],
           plugins: [
             "@babel/plugin-proposal-class-properties",
-            "react-hot-loader/babel"
+            "react-hot-loader/babel",
+            "@babel/plugin-syntax-dynamic-import"
           ]
         }
       },
