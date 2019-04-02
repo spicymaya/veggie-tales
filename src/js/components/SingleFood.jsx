@@ -10,7 +10,7 @@ class SingleFood extends React.Component {
 
   render() {
     return (
-      <Media className={styles.sf}>
+      <Media className={styles.single_food}>
         <Media className={styles.sfImg} left tag="div">
           <Media
             tag="img"
@@ -19,7 +19,7 @@ class SingleFood extends React.Component {
             alt={this.props.data.name}
           />
         </Media>
-        <Media className={styles.sfText} body>
+        <Media body className={styles.single_food_text}>
           <Media heading className="qa-name">
             {this.props.data.name}
           </Media>
