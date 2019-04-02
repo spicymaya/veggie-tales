@@ -11,7 +11,7 @@ class SingleFood extends React.Component {
   render() {
     return (
       <Media className={styles.single_food}>
-        <Media className={styles.sfImg} left tag="div">
+        <Media className={styles.single_food_img} left tag="div">
           <Media
             tag="img"
             object
