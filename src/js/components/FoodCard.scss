@@ -1,9 +1,11 @@
+$break-small: 650px;
 .cardStyle {
-  // float: left;
   display: block;
-  // padding: 2rem;
-  margin: 0.5rem;
-  width: 30%;
+  @media screen and (max-width: $break-small) {
+    width: 100%;
+  }
+  width: 32%;
+  padding: 1%;
   // background: #c62168;
   border-radius: 5px;
   &:nth-child(3n + 1) {
