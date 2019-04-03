@@ -1,6 +1,11 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  withRouter
+} from "react-router-dom";
 import NewFood from "./NewFood.jsx";
 import SingleFood from "./SingleFood.jsx";
 import api from "../../../lib/api.js";
@@ -11,7 +16,8 @@ class SingleFoodWrapper extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal: false
+      modal: false,
+      toFoodList: false
     };
   }
   componentDidMount() {
@@ -31,11 +37,12 @@ class SingleFoodWrapper extends React.Component {
   };
   handleDelete = () => {
     api.deleteFood(this.props.match.params.id);
-    window.location.assign("/foods");
+    this.props.history.push("/foods");
   };
 
   render() {
     // console.log(this.state);
+
     return (
       <Router>
         <div className={styles.sfWrapper}>
@@ -97,4 +104,4 @@ class SingleFoodWrapper extends React.Component {
   }
 }
 
-export default SingleFoodWrapper;
+export default withRouter(SingleFoodWrapper);

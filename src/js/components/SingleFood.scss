@@ -1,13 +1,12 @@
 // sf means single food
-.sf {
-  .sfImg {
-    // width: 75%;
+.single_food {
+  .single_food_img {
+    width: 75%;
+    img {
+      width: 100%;
+    }
   }
-  .sfText {
+  .single_food_text {
     margin-left: 1%;
-  }
-  .sfBadge {
-    // float: left;
-    // clear: both;
   }
 }

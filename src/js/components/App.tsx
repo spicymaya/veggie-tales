@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { any } from "prop-types";
+import { hot } from "react-hot-loader/root";
 import FoodWrapper from "./FoodWrapper.jsx";
 import NewFood from "./NewFood.jsx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -42,12 +43,18 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Navbar light expand="md">
-            <NavbarBrand href="/">Veggie Tales</NavbarBrand>
+            <NavbarBrand tag={Link} to="/">
+              Veggie Tales
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav navbar>
-                <NavLink href="/foods">Food list</NavLink>
-                <NavLink href="/new">Add new</NavLink>
+                <NavLink tag={Link} to="/foods">
+                  Food list
+                </NavLink>
+                <NavLink tag={Link} to="/new">
+                  Add new
+                </NavLink>
               </Nav>
             </Collapse>
           </Navbar>
@@ -59,4 +66,4 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+export default hot(App);

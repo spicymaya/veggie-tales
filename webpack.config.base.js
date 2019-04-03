@@ -1,19 +1,36 @@
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
-// const nodeExternals = require("webpack-node-externals");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-const config = {
-  node: {
-    __dirname: false
+module.exports = {
+  entry: path.join(__dirname, "./src/index.js"),
+  output: {
+    path: path.join(__dirname, "./build"),
+    filename: "bundle.js"
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
+        loader: "babel-loader",
+        options: {
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: "last 2 versions, not dead, not <2%, not ie 11",
+
+                useBuiltIns: "entry"
+              }
+            ],
+            "@babel/preset-react",
+            "@babel/typescript"
+          ],
+          plugins: [
+            "@babel/plugin-proposal-class-properties",
+            "react-hot-loader/babel",
+            "@babel/plugin-syntax-dynamic-import"
+          ]
         }
       },
       {
@@ -37,9 +54,7 @@ const config = {
               }
             }
           },
-          {
-            loader: "sass-loader" // compiles Sass to CSS
-          }
+          "sass-loader" // compiles Sass to CSS
         ]
       },
       {
@@ -53,25 +68,14 @@ const config = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: path.join(__dirname, "./src/index.html"),
       filename: "./index.html"
     }),
     new webpack.DefinePlugin({
       API_URL:
         process.env.NODE_ENV === "production"
           ? JSON.stringify("https://shrouded-meadow-36658.herokuapp.com")
-          : JSON.stringify("http://localhost:3000") // necessary so that webpack injects the value including the "" quotes, as a string.
+          : JSON.stringify("http://localhost:3000")
     })
-  ],
-  // set to development to read .env.local variables
-  mode: "development"
+  ]
 };
-
-const serverConfig = Object.assign({}, config, {
-  entry: ["@babel/polyfill", __dirname + "/src/index.js"],
-  output: {
-    path: path.resolve("./build"),
-    filename: "scripts.js"
-  }
-});
-module.exports = [serverConfig];
