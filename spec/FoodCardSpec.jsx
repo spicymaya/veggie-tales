@@ -4,7 +4,6 @@ import { mount } from "enzyme";
 import FoodCard from "../src/js/components/FoodCard";
 
 describe("FoodsComponent", () => {
-  beforeEach(function() {});
   it("Should render Orange", function() {
     global.document.addEventListener("load", function() {
       const foodData = [
