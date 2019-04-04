@@ -10,7 +10,8 @@ import {
   NavLink,
   NavbarBrand,
   NavbarToggler,
-  Collapse
+  Collapse,
+  Button
 } from "reactstrap";
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
     this.state = {
       isOpen: false
     };
+
     Navbar.propTypes = {
       light: PropTypes.bool,
       dark: PropTypes.bool,

@@ -26,8 +26,6 @@ class FoodCard extends React.Component {
       transitionDuration: "0.2s",
       itemSelector: ".cardMasonry",
       columnWidth: ".cardMasonry",
-      // do not use .grid-sizer in layout
-
       percentPosition: true
     };
 
