@@ -45,7 +45,7 @@ class SingleFoodWrapper extends React.Component {
 
     return (
       <Router>
-        <div className={styles.sfWrapper}>
+        <div className={styles.single_food_wrapper}>
           <Route
             path={`/foods/${this.props.match.params.id}/edit`}
             component={() => <NewFood data={this.state.data} />}
