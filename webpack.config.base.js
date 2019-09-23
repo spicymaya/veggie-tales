@@ -10,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|tsx)$/,
+        test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
@@ -28,7 +28,6 @@ module.exports = {
           ],
           plugins: [
             "@babel/plugin-proposal-class-properties",
-            "react-hot-loader/babel",
             "@babel/plugin-syntax-dynamic-import"
           ]
         }

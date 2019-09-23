@@ -21,7 +21,7 @@ export default {
     const data = response.json();
     return data;
   },
-  getSingleFood: async function(id) {
+  getSingleFood: async function(id: number) {
     let url = `${API_URL}/foods/${id}`;
     const response = await fetch(url, {
       method: "GET"
@@ -30,13 +30,13 @@ export default {
     return data;
   },
 
-  deleteFood: async function(id) {
+  deleteFood: async function(id: number) {
     let url = `${API_URL}/foods/${id}`;
     await fetch(url, {
       method: "DELETE"
     });
   },
-  createFood: async function(data) {
+  createFood: async function(data : {}) {
     let url = `${API_URL}/foods`;
     // debugger;
     const response = await fetch(url, {
@@ -50,8 +50,8 @@ export default {
     });
     return customPromise(response);
   },
-  updateFood: async function(data, id) {
-    let url = `${API_URL}/foods/${id}`;
+  updateFood: async function(data: {}, id: number) {
+    let url: string = `${API_URL}/foods/${id}`;
     // debugger;
     await fetch(url, {
       method: "PUT",
