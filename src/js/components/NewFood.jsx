@@ -32,27 +32,20 @@ class NewFood extends React.Component {
         error: props.data.error
       };
     }
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   handleSubmit = async event => {
     event.preventDefault();
     try {
       if (typeof this.props.data == "undefined") {
-        const data = await api.createFood(
-          this.state.formControls
-          // this.state.rating
-        );
+        await api.createFood(this.state.formControls);
         console.log(this.state);
         // window.location.assign("/foods/" + data.id);
         // this.props.history.push(`/foods/${this.state.data.id}`);
         this.props.history.push("/foods/");
       } else {
-        const data = await api.updateFood(
-          this.state.formControls,
-          // this.state.rating,
-          this.props.data.id
-        );
+        await api.updateFood(this.state.formControls, this.props.data.id);
         // window.location.assign("/foods/" + this.props.data.id);
         console.log(this.props.data);
         this.props.history.push(`/foods/${this.props.data.id}`);
