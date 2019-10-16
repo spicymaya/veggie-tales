@@ -9,7 +9,7 @@ class FoodEdit extends React.Component {
   render() {
     return (
       <NewFoodForm
-        formControls={this.state.formControls}
+        data={this.props.data}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
       />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Media, Badge } from "reactstrap";
-import OhMyStars from "./OhMyStars.jsx";
+import OhMyStars from "./OhMyStars.tsx";
 import styles from "./SingleFood.scss";
 
 class SingleFood extends React.Component {

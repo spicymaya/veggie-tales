@@ -1,32 +1,34 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./OhMyStars.scss";
 
-class OhMyStars extends React.Component {
-  static propTypes = {
-    number: PropTypes.number,
-    onStarClick: PropTypes.func,
-    isEditable: PropTypes.bool
-  };
+interface OhMyStarsProps {
+  number: number;
+  onStarClick: (starNumber: number) => void;
+  isEditable: boolean;
+}
+interface OhMyStarsState {
+  hovered?: number;
+}
 
-  constructor(props) {
+class OhMyStars extends React.Component<OhMyStarsProps, OhMyStarsState> {
+  constructor(props: OhMyStarsProps) {
     super(props);
     this.state = {
       hovered: null
     };
     // console.log("props", props);
   }
-  onStarClick = starNumber => {
+  onStarClick = (starNumber: number): void => {
     this.props.onStarClick(starNumber);
   };
 
-  onMouseOut = () => {
+  onMouseOut = (): void => {
     this.setState({
       hovered: null
     });
   };
 
-  onMouseOver = hoveredStarNumber => {
+  onMouseOver = (hoveredStarNumber: number): void => {
     this.setState({
       hovered: hoveredStarNumber
     });

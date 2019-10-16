@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes, { any } from "prop-types";
-import { hot } from "react-hot-loader/root";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { toggleMenu } from "../actions/toggleActions";
 import FoodWrapper from "./FoodWrapper.jsx";
-import NewFood from "./NewFood.jsx";
+import NewFoodForm from "./NewFoodForm.jsx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {
   Navbar,
@@ -10,17 +12,16 @@ import {
   NavLink,
   NavbarBrand,
   NavbarToggler,
-  Collapse,
-  Button
+  Collapse
 } from "reactstrap";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+    // this.state = {
+    //   isOpen: false
+    // };
 
     Navbar.propTypes = {
       light: PropTypes.bool,
@@ -35,37 +36,57 @@ class App extends React.Component {
   }
 
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    // this.setState({
+    //   isOpen: !this.state.isOpen
+    // });
+    this.props.toggleMenu();
   }
 
   render() {
     return (
       <Router>
-        <div className="App">
-          <Navbar light expand="md">
-            <NavbarBrand tag={Link} to="/">
+        <div className='App'>
+          <Navbar light expand='md'>
+            <NavbarBrand tag={Link} to='/'>
               Veggie Tales
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
+            <Collapse isOpen={this.props.menuIsOpen} navbar>
               <Nav navbar>
-                <NavLink tag={Link} to="/foods">
+                <NavLink tag={Link} target='_self' to='/foods'>
                   Food list
                 </NavLink>
-                <NavLink tag={Link} to="/new">
+                <NavLink tag={Link} target='_self' to='/new'>
                   Add new
                 </NavLink>
               </Nav>
             </Collapse>
           </Navbar>
-          <Route exact path="/" component={FoodWrapper} />
-          <Route path="/foods/" component={FoodWrapper} />
-          <Route path="/new" component={NewFood} />
+          <Route exact path='/' component={FoodWrapper} />
+          <Route path='/foods' component={FoodWrapper} />
+          <Route path='/new' component={NewFoodForm} />
         </div>
       </Router>
     );
   }
 }
-export default hot(App);
+const mapStateToProps = state => {
+  // console.log(state.toggle.menuIsOpen);
+  return {
+    menuIsOpen: state.toggle.menuIsOpen
+  };
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return bindActionCreators(toggleMenu, dispatch);
+// };
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleMenu: bindActionCreators(toggleMenu, dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

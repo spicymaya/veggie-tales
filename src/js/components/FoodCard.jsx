@@ -10,14 +10,11 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Masonry from "react-masonry-component";
-import OhMyStars from "./OhMyStars.jsx";
+import OhMyStars from "./OhMyStars.tsx";
 import styles from "./FoodCard.scss";
 // import ReactCountryFlag from "react-country-flag";
 
 class FoodCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   handleImagesLoaded = () => {
     // console.log("loaded");
   };
@@ -56,8 +53,8 @@ class FoodCard extends React.Component {
                     alt="Card image cap"
                   />
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
 
                 <CardBody>
                   <CardTitle className="qa-name">{food.name}</CardTitle>

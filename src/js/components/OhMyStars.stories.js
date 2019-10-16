@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 
-import OhMyStars from "./OhMyStars.jsx";
+import OhMyStars from "./OhMyStars.tsx";
 
 const stories = storiesOf("OhMyStars - star rating component", module);
 stories.addDecorator(withKnobs);

@@ -1,5 +1,9 @@
 //Use when need to try catch an exception
-const customPromise = response =>
+//@ts-check
+/**
+ * @return {Promise<string>}
+ */
+const customPromise = (response): Promise<string> =>
   new Promise(async (resolve, reject) => {
     if (response.ok) {
       const data = await response.json();
@@ -36,7 +40,7 @@ export default {
       method: "DELETE"
     });
   },
-  createFood: async function(data : {}) {
+  createFood: async function(data: {}) {
     let url = `${API_URL}/foods`;
     // debugger;
     const response = await fetch(url, {

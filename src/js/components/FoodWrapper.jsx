@@ -11,37 +11,39 @@ import {
   Input,
   Col
 } from "reactstrap";
-import api from "../../../lib/api.js";
+import { connect } from 'react-redux';
+import { fetchProducts } from "../actions/productsActions";
+// import api from "../../../lib/api.ts";
 import SingleFoodWrapper from "./SingleFoodWrapper.jsx";
 import FoodCard from "./FoodCard.jsx";
 
 class FoodWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      searchString: ""
-    };
-  }
-
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     data: [],
+  //     searchString: ""
+  //   };
+  // }
   componentDidMount() {
-    api.getFoods().then(data => {
-      this.setState({ data });
-    });
+    // api.getFoods().then(data => {
+    //   this.setState({ data });
+    // });
+    this.props.dispatch(fetchProducts());
   }
   handleSearchChange = event => {
-    this.setState({
-      searchString: event.target.value
-    });
+    // this.setState({
+    //   searchString: event.target.value
+    // });
   };
   render() {
-    const search = this.state.searchString.trim().toLowerCase();
-    let foods = this.state.data;
-    if (search.length > 0) {
-      foods = foods.filter(function(food) {
-        return food.name.toLowerCase().match(search);
-      });
-    }
+    // const search = this.state.searchString.trim().toLowerCase();
+    let foods = this.props.products;
+    // if (search.length > 0) {
+    //   foods = foods.filter(function (food) {
+    //     return food.name.toLowerCase().match(search);
+    //   });
+    // }
     return (
       <Router>
         <Container>
@@ -51,7 +53,7 @@ class FoodWrapper extends React.Component {
             path={`/foods/`}
             render={() => (
               <div>
-                <Col md={{ size: 5, offset: 7 }}>
+                {/* <Col md={{ size: 5, offset: 7 }}>
                   <Input
                     className="qa-input"
                     onChange={this.handleSearchChange}
@@ -59,7 +61,7 @@ class FoodWrapper extends React.Component {
                     placeholder="Search"
                     aria-label="Search"
                   />
-                </Col>
+                </Col> */}
 
                 <FoodCard data={foods} />
               </div>
@@ -96,4 +98,9 @@ class FoodWrapper extends React.Component {
     );
   }
 }
-export default FoodWrapper;
+const mapStateToProps = state => ({
+  products: state.foods.data,
+  loading: state.foods.loading,
+  error: state.foods.error
+});
+export default connect(mapStateToProps)(FoodWrapper);
